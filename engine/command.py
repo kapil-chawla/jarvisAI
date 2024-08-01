@@ -1,4 +1,5 @@
 import pyttsx3
+import speech_recognition as sr
 
 def speak(text):
     engine = pyttsx3.init('sapi5')
@@ -8,4 +9,21 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
     
-speak("Hello, how can I assist you today?")
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source, 10, 6)
+
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio, language='en-in')
+        print(f"You said: {query}\n")
+
+    except Exception as e:
+        print(e)
+        print("Say that again please...")
+        return "None"
+    return query.lower()
