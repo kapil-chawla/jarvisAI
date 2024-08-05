@@ -10,3 +10,4 @@ eel.init("www")
 os.system("start msedge.exe --app http://localhost:8080/index.html")
 eel.start("index.html", mode=None, host="localhost", port=8080, block=True, size=(800, 600)) 
 
+# os.startfile("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TeamViewer")
